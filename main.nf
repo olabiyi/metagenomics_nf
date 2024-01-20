@@ -21,7 +21,7 @@ process Trim_reads {
     script:
         """
         trim_galore --paired --length 20 --dont_gzip  -o ./ ${forward} ${rev}
-	    """
+	"""
 }
 
 // Removing sequences that look contaminated using deconseq from the forward reads
@@ -42,7 +42,7 @@ process Remove_contaminants_Forward {
         USER=\$(whoami)
         chown \${USER}:\${USER} ./bwa64 && chmod +x ./bwa64
         deconseq.pl -f ${forward} -dbs plant -out_dir ./ -id ${sample}_for_read
-	    """
+	"""
 }
 
 // Removing sequences that look contaminated using deconseq from the reverse reads
@@ -63,7 +63,7 @@ process Remove_contaminants_Rev {
         USER=\$(whoami)
         chown \${USER}:\${USER} ./bwa64 && chmod +x ./bwa64
         deconseq.pl -f ${rev} -dbs plant -out_dir ./ -id ${sample}_rev_read 
-	    """
+	"""
 }
 
 // Rewriting paired end fastq files to make sure that all reads 
@@ -99,10 +99,10 @@ process Assemble_metagenome {
         megahit \
            -1 ${forward} \
            -2 ${rev} \
-	         -t ${task.cpus} \
-	         -o megahit/ \
-	         --out-prefix ${sample}
-	     """
+	   -t ${task.cpus} \
+	   -o megahit/ \
+	   --out-prefix ${sample}
+	"""
 }
 
 
@@ -120,11 +120,11 @@ process Predict_protiens {
         """
         prodigal \
            -p meta \
-	         -f gff \
-	         -i ${assembly} \
-	         -o "${sample}_proteins.gff" \
-	         -a "${sample}_proteins.faa" \
-	         -d "${sample}_proteins.fna"
+	   -f gff \
+	   -i ${assembly} \
+	   -o "${sample}_proteins.gff" \
+	   -a "${sample}_proteins.faa" \
+	   -d "${sample}_proteins.fna"
         """
 }
 
@@ -144,9 +144,9 @@ process Protein_families {
         """
          hmmsearch \
            --domE 1e-5 \
-	       --domtblout "${sample}_hmmsearch.PFAM.tsv" \
+	   --domtblout "${sample}_hmmsearch.PFAM.tsv" \
            --noali --cpu ${task.cpus} ${reference} ${proteins}
-	    """
+	"""
 }
 
 workflow {
@@ -171,8 +171,8 @@ workflow {
 
     protein_ch =  clean_ch | 
                   Rewrite_pairs |
-	              Assemble_metagenome |
-	              Predict_protiens 
+	          Assemble_metagenome |
+	          Predict_protiens 
     
     result_ch = Protein_families(ref_ch, protein_ch)   
 }
