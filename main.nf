@@ -13,6 +13,7 @@ log.info """\
 process Trim_reads {
 
     tag "Trimming the forward and reverse reads of ${sample} using trim_galore...."
+    //publishDir "02.Trim_reads/" , mode: "copy"
 
     input:
         tuple val(sample), path(forward), path(rev)
@@ -29,6 +30,7 @@ process Remove_contaminants_Forward {
 
     tag "Removing contaminants from ${sample}'s forward reads"
     label 'Deconseq'
+    //publishDir "03.Remove_contaminants/" , mode: "copy"
     
     input:
         each path(db)
@@ -50,6 +52,7 @@ process Remove_contaminants_Rev {
 
     tag "Removing contaminants from ${sample}'s reverse reads"
     label 'Deconseq'
+    //publishDir "03.Remove_contaminants/" , mode: "copy"
 
     input:
         each path(db)
@@ -72,6 +75,7 @@ process Remove_contaminants_Rev {
  process Rewrite_pairs {
 
     tag "Rewriting pairs for ${sample}"
+    //publishDir "04.Rewrite_pairs/" , mode: "copy"
 
     input:
         tuple val(sample), path(forward), path(rev)
@@ -89,6 +93,7 @@ process Remove_contaminants_Rev {
 process Assemble_metagenome {
 
     tag "Assembling the metagenome for ${sample} using megahit"
+    //publishDir "05.Assemble_metagenome/" , mode: "copy"
        
     input:
         tuple val(sample), path(forward), path(rev)
@@ -111,7 +116,8 @@ process Assemble_metagenome {
 process Predict_protiens {
 
     tag "Finding open reading frames for ${sample}"
-
+    //publishDir "06.Predict_proteins/" , mode: "copy", pattern: "*_proteins*" 
+    
     input:
         tuple val(sample), path(assembly)
     output:
@@ -132,6 +138,7 @@ process Predict_protiens {
 process Protein_families {
 
     tag "Running HMMScan (hmm models) on predicted proteins for ${sample}"
+    publishDir "07.Protein_families/" , mode: "copy"
 
     input:
         each path(reference)
