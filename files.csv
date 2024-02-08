@@ -1,5 +1,5 @@
-A,S3://biyi/metagenome/01.raw_data/A_R1.fastq.gz,S3://biyi/metagenome/01.raw_data/A_R2.fastq.gz
-B,S3://biyi/metagenome/01.raw_data/B_R1.fastq.gz,S3://biyi/metagenome/01.raw_data/B_R2.fastq.gz
-C,S3://biyi/metagenome/01.raw_data/C_R1.fastq.gz,S3://biyi/metagenome/01.raw_data/C_R2.fastq.gz
-D,S3://biyi/metagenome/01.raw_data/D_R1.fastq.gz,S3://biyi/metagenome/01.raw_data/D_R2.fastq.gz
-E,S3://biyi/metagenome/01.raw_data/E_R1.fastq.gz,S3://biyi/metagenome/01.raw_data/E_R2.fastq.gz
+A,s3://biyi/metagenome/01.raw_data/A_R1.fastq.gz,s3://biyi/metagenome/01.raw_data/A_R2.fastq.gz
+B,s3://biyi/metagenome/01.raw_data/B_R1.fastq.gz,s3://biyi/metagenome/01.raw_data/B_R2.fastq.gz
+C,s3://biyi/metagenome/01.raw_data/C_R1.fastq.gz,s3://biyi/metagenome/01.raw_data/C_R2.fastq.gz
+D,s3://biyi/metagenome/01.raw_data/D_R1.fastq.gz,s3://biyi/metagenome/01.raw_data/D_R2.fastq.gz
+E,s3://biyi/metagenome/01.raw_data/E_R1.fastq.gz,s3://biyi/metagenome/01.raw_data/E_R2.fastq.gz
